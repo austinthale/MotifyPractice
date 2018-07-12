@@ -10,7 +10,7 @@ import (
 	"github.com/labstack/echo"
 )
 
-//return arbitary JSON in our response, a map with strings as keys and anything as values
+//return arbitrary JSON in our response, a map with strings as keys and anything as values
 type H map[string]interface{}
 
 // GetTasks endpoint

@@ -1,0 +1,30 @@
+{{ define "resume" }}
+
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://unpkg.com/vue"></script>
+{{ template "header" }}
+
+<body>
+{{ template "navbar" }}
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Home</h1>
+        <p class="lead">This is my <strong>RESUME</strong> page</p>
+
+        <div id="app3">
+            <p>{{ info }}</p>
+        </div>
+
+    </div>
+
+</div><!-- /.container -->
+
+{{ template "footer" }}
+</body>
+</html>
+
+<script src="resume.js"></script>
+{{ end }}

@@ -225,7 +225,7 @@ func main() {
 	cookieGroup := e.Group("/cookie")
 	jwtGroup := e.Group("/jwt")
 
-	e.Use(middleware.Static("./"))
+	e.Use(middleware.Static("../static"))
 
 	// this logs the server interaction
 	//g.Use(middleware.Logger())

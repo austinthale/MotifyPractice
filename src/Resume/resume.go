@@ -2,153 +2,207 @@ package main
 
 import (
 	"net/http"
-
+	"html/template"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"database/sql"
+	_ "github.com/mattn/go-sqlite3"
+	"io"
+	"github.com/thedevsaddam/renderer"
+	"log"
 )
 
+var rnd *renderer.Render
+
+// TemplateRenderer is a custom html/template renderer for Echo framework
+type TemplateRenderer struct {
+	templates *template.Template
+}
+
+func init() {
+	opts := renderer.Options{
+		ParseGlobPattern: "./src/public/*.html",
+	}
+
+	rnd = renderer.New(opts)
+}
+
+// Render renders a template document
+func (t *TemplateRenderer) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
+
+	// Add global methods if data is a map
+	if viewContext, isMap := data.(map[string]interface{}); isMap {
+		viewContext["reverse"] = c.Echo().Reverse
+	}
+
+	return t.templates.ExecuteTemplate(w, name, data)
+}
+
 type PersonInfo struct {
-	Name    string
-	Address string
-	Phone   string
-	Email   string
+	Name    string `json:"name"`
+	Address string `json:"address"`
+	Phone   string `json:"phone"`
+	Email   string `json:"email"`
 }
 
 type Education struct {
-	School			string
-	DateAttended 	string
-	Notes 			[]string
+	School       string   `json:"school"`
+	DateAttended string   `json:"date_attended"`
+	Notes        []string `json:"notes"`
 }
 
 type Employment struct {
-	Company 		string
-	DateAttended	string
-	Position 		string
-	Notes 			[]string
+	Company      string   `json:"company"`
+	DateAttended string   `json:"date_attended"`
+	Position     string   `json:"position"`
+	Notes        []string `json:"notes"`
 }
 
 type Volunteer struct {
-	Company 		string
-	DateAttended	string
-	Position 		string
-	Notes 			[]string
+	Company      string   `json:"company"`
+	DateAttended string   `json:"date_attended"`
+	Position     string   `json:"position"`
+	Notes        []string `json:"notes"`
 }
 
-func displayInfo(c echo.Context) error {
-	p := PersonInfo{
+type Resume struct {
+	PersonInfo  PersonInfo   `json:"person_info"`
+	Educations  []Education  `json:"educations"`
+	Employments []Employment `json:"employments"`
+	Volunteers  []Volunteer  `json:"volunteers"`
+}
+
+var r = Resume{
+	PersonInfo: PersonInfo{
 		Name:    "Austin Hale",
 		Address: "757 S 320 W,\nProvo, UT 84601",
 		Phone:   "+1-559-346-7123",
 		Email:   "austin.t.hale89@gmail.com",
-	}
-	//if err := c.Bind(p); err != nil {
-	//	return err
-	//}
-
-	//Get Name, Address, Phone, and Email
-	name := p.Name
-	address := p.Address
-	phone := p.Phone
-	email := p.Email
-	education := getEducation()
-	career := getJobs()
-	volunteer := getVolunteer()
-	return c.String(http.StatusOK, "" + name + "\n" + address + "\n" + phone + "\n" + email + "\n" + education + "\n" + career + "\n" + volunteer)
+	},
+	Educations: []Education{
+		{
+			School:       "Utah Valley University",
+			DateAttended: "Aug 2015 - Present",
+			Notes: []string{
+				"Cumulative GPA of 3.8, expected to graduate in Spring 2019.",
+				"Experienced in object-oriented and game development, design, testing, and debugging in teams and independently."},
+		},
+		{
+			School:       "BYU-Idaho",
+			DateAttended: "Apr 2011 – Dec 2012",
+			Notes: []string{
+				"Completed General Education classes and Intro to Programming classes"},
+		},
+	},
+	Employments: []Employment{
+		{
+			Company:      "Utah Valley University CS Tutor Lab",
+			DateAttended: "Jan 2018 - Present",
+			Position:     "Computer Science Tutor and Grader",
+			Notes: []string{
+				"Coached students 1-on-1, teaching them to think critically for problem solving, debugging, and effective programming.",
+				"Facilitated numerous programming courses as a grader and class assistant, providing additional guidance and simplifying programming concepts (e.g. CPU Scheduling simulation, AVL Trees, Advanced Algorithms, etc.)",
+			},
+		},
+		{
+			Company:      "Frontier Communications",
+			DateAttended: "Feb 2016 – Aug 2016",
+			Position:     "Customer Service Representative",
+			Notes: []string{
+				"Averaged a 94 NPS by resolving customer concerns through explaining policies with professionalism and simplicity.",
+			},
+		},
+	},
+	Volunteers: []Volunteer{
+		{
+			Company:      "Xing Zhou Bilingual School; Guangdong, China",
+			DateAttended: "Mar 2015 - Jul 2015",
+			Position:     "English Teacher",
+			Notes: []string{
+				"Adapted to Chinese culture while teaching English to 12 classes of 30+ students from 1st-8th grade",
+			},
+		},
+		{
+			Company:      "Church of Jesus Christ of Latter-day Saints; Salta, Argentina",
+			DateAttended: "Feb 2009 - Feb 2011",
+			Position:     "Full-time Representative",
+			Notes: []string{
+				"Organized and taught 10-60 minute lessons to individuals and families while mastering Spanish",
+				"Demonstrated leadership by planning service and community projects as Branch President",
+			},
+		},
+	},
 }
 
-func getEducation() string {
-	schoolStr := "\n\nEducation:\n"
-	s1 := Education{
-		School: 		"Utah Valley University",
-		DateAttended: 	"Aug 2015 - Present",
-		Notes:			nil,
-	}
-	s1.Notes = append(s1.Notes, "Cumulative GPA of 3.8, expected to graduate in Spring 2019.")
-	s1.Notes = append(s1.Notes, "Experienced in object-oriented and game development, design, testing, and debugging in teams and independently.")
-	schoolStr += s1.School + "\n" + s1.DateAttended + "\n"
-	for i := 0; i < len(s1.Notes); i++  {
-		schoolStr += s1.Notes[i] + "\n"
-	}
-	s2 := Education{
-		School: 		"BYU-Idaho",
-		DateAttended: 	"Apr 2011 – Dec 2012",
-		Notes:			nil,
-	}
-	s2.Notes = append(s2.Notes, "Completed General Education classes and Intro to Programming classes")
-	schoolStr += s2.School + "\n" + s2.DateAttended + "\n"
-	for i := 0; i < len(s2.Notes); i++  {
-		schoolStr += s2.Notes[i] + "\n"
-	}
-	return schoolStr
+func displayInfo(c echo.Context) error {
+	return c.JSON(http.StatusOK, r)
 }
 
-func getJobs() string {
-	jobStr := "\n\nEmployment:\n"
-	e1 := Employment{
-		Company: 		"Utah Valley University CS Tutor Lab",
-		DateAttended: 	"Jan 2018 - Present",
-		Position:		"Computer Science Tutor and Grader",
-		Notes:			nil,
+//Initializes DB, returns a pointer to sql DB
+func initDB(filepath string) *sql.DB {
+	db, err := sql.Open("sqlite3", filepath)
+
+	// Here we check for any db errors then exit
+	if err != nil {
+		panic(err)
 	}
-	e1.Notes = append(e1.Notes, "Coached students 1-on-1, teaching them to think critically for problem solving, debugging, and effective programming.")
-	e1.Notes = append(e1.Notes, "Facilitated numerous programming courses as a grader and class assistant, providing additional guidance and simplifying programming concepts (e.g. CPU Scheduling simulation, AVL Trees, Advanced Algorithms, etc.)")
-	jobStr += e1.Company + "\n" + e1.DateAttended + "\n"
-	for i := 0; i < len(e1.Notes); i++  {
-		jobStr += e1.Notes[i] + "\n"
+
+	// If we don't get any errors but somehow still don't get a db connection
+	// we exit as well
+	if db == nil {
+		panic("db nil")
 	}
-	e2 := Employment{
-		Company: 		"Frontier Communications",
-		DateAttended: 	"Feb 2016 – Aug 2016",
-		Position:		"Customer Service Representative",
-		Notes:			nil,
-	}
-	e2.Notes = append(e2.Notes, "Averaged a 94 NPS by resolving customer concerns through explaining policies with professionalism and simplicity.")
-	jobStr += e2.Company + "\n" + e2.DateAttended + "\n"
-	for i := 0; i < len(e2.Notes); i++  {
-		jobStr += e2.Notes[i] + "\n"
-	}
-	return jobStr
+	return db
 }
 
-func getVolunteer() string {
-	volunteerStr := "\nVolunteer Experience:\n"
-	v1 := Volunteer{
-		Company: 		"Xing Zhou Bilingual School; Guangdong, China",
-		DateAttended: 	"Mar 2015 - Jul 2015",
-		Position:		"English Teacher",
-		Notes:			nil,
+//Migrate the schema
+func migrate(db *sql.DB) {
+	sql := `
+    CREATE TABLE IF NOT EXISTS Employment(
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        name VARCHAR NOT NULL
+    );
+    `
+
+	_, err := db.Exec(sql)
+	// Exit if something goes wrong with our SQL statement above
+	if err != nil {
+		panic(err)
 	}
-	v1.Notes = append(v1.Notes, "Adapted to Chinese culture while teaching English to 12 classes of 30+ students from 1st-8th grade")
-	volunteerStr += v1.Company + "\n" + v1.DateAttended + "\n"
-	for i := 0; i < len(v1.Notes); i++  {
-		volunteerStr += v1.Notes[i] + "\n"
-	}
-	v2 := Volunteer{
-		Company: 		"Church of Jesus Christ of Latter-day Saints; Salta, Argentina",
-		DateAttended: 	"Feb 2009 - Feb 2011",
-		Position:		"Full-time Representative",
-		Notes:			nil,
-	}
-	v2.Notes = append(v2.Notes, "Organized and taught 10-60 minute lessons to individuals and families while mastering Spanish")
-	v2.Notes = append(v2.Notes, "Demonstrated leadership by planning service and community projects as Branch President")
-	volunteerStr += v2.Company + "\n" + v2.DateAttended + "\n"
-	for i := 0; i < len(v2.Notes); i++  {
-		volunteerStr += v2.Notes[i] + "\n"
-	}
-	return volunteerStr
 }
 
 func main() {
+	db := initDB("resume.db")
+	migrate(db)
+
 	// Echo instance
 	e := echo.New()
+
+
+	//TEMPLATE RENDERING
+	//renderer := &TemplateRenderer{
+	//	templates: template.Must(template.ParseGlob("*.html")),
+	//}
+	//e.Renderer = renderer
 
 	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
 	// Route => handler
-	e.GET("/", displayInfo)
+	//e.GET("/", displayInfo)
+
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", resume)
+	//mux.HandleFunc("/about", about)
+	port := ":9000"
+	log.Println("Listening on port ", port)
+	http.ListenAndServe(port, mux)	//temporarily replacing the Start Server line below
 
 	// Start server
-	e.Logger.Fatal(e.Start(":1323"))
+	//e.Logger.Fatal(e.Start(":1323"))
+}
+
+func resume(w http.ResponseWriter, r *http.Request) {
+	rnd.HTML(w, http.StatusOK, "resume", nil)
 }
