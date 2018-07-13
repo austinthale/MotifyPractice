@@ -1,24 +1,25 @@
 package main
 
 import (
-	"net/http"
-	"html/template"
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
-	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
-	"io"
-	"github.com/thedevsaddam/renderer"
-	"log"
+	"github.com/labstack/echo"
+	"net/http"
+	"database/sql"
+	"github.com/labstack/echo/middleware"
+	"encoding/json"
 )
 
+/*
 var rnd *renderer.Render
+*/
 
+/*
 // TemplateRenderer is a custom html/template renderer for Echo framework
 type TemplateRenderer struct {
 	templates *template.Template
 }
-
+*/
+/*
 func init() {
 	opts := renderer.Options{
 		ParseGlobPattern: "./src/public/*.html",
@@ -26,7 +27,8 @@ func init() {
 
 	rnd = renderer.New(opts)
 }
-
+*/
+/*
 // Render renders a template document
 func (t *TemplateRenderer) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
 
@@ -37,6 +39,7 @@ func (t *TemplateRenderer) Render(w io.Writer, name string, data interface{}, c 
 
 	return t.templates.ExecuteTemplate(w, name, data)
 }
+*/
 
 type PersonInfo struct {
 	Name    string `json:"name"`
@@ -75,7 +78,7 @@ type Resume struct {
 var r = Resume{
 	PersonInfo: PersonInfo{
 		Name:    "Austin Hale",
-		Address: "757 S 320 W,\nProvo, UT 84601",
+		Address: "757 S 320 W, Provo, UT 84601",
 		Phone:   "+1-559-346-7123",
 		Email:   "austin.t.hale89@gmail.com",
 	},
@@ -172,37 +175,27 @@ func migrate(db *sql.DB) {
 }
 
 func main() {
-	db := initDB("resume.db")
-	migrate(db)
-
 	// Echo instance
 	e := echo.New()
-
-
-	//TEMPLATE RENDERING
-	//renderer := &TemplateRenderer{
-	//	templates: template.Must(template.ParseGlob("*.html")),
-	//}
-	//e.Renderer = renderer
 
 	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	// Route => handler
-	//e.GET("/", displayInfo)
+	e.File("/", "src/public/resume.html") //using to serve a static file that will contain our VueJS client code.
 
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", resume)
-	//mux.HandleFunc("/about", about)
-	port := ":9000"
-	log.Println("Listening on port ", port)
-	http.ListenAndServe(port, mux)	//temporarily replacing the Start Server line below
+	//Encoding JSON to write it to the server
+	http.HandleFunc("/resumejson", func(w http.ResponseWriter, req *http.Request) {
+		json.NewEncoder(w).Encode(r)
+	})
+
+	// Route => handler
+	e.GET("/resumejson", displayInfo)
 
 	// Start server
-	//e.Logger.Fatal(e.Start(":1323"))
+	e.Logger.Fatal(e.Start(":1323"))
 }
 
-func resume(w http.ResponseWriter, r *http.Request) {
+/*func resume(w http.ResponseWriter, r *http.Request) {
 	rnd.HTML(w, http.StatusOK, "resume", nil)
-}
+}*/

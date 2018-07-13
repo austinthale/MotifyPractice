@@ -6,20 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73692825-6be2-433d-b8e7-81d5e67fca10" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/public/footer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/navbar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/resume.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/resume.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/resume.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/github.com/dgrijalva/jwt-go.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/github.com/dgrijalva/jwt-go.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/github.com/labstack/echo.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/github.com/labstack/echo.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/github.com/labstack/echo/middleware.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/github.com/labstack/echo/middleware.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resume.exe" beforeDir="false" afterPath="$PROJECT_DIR$/resume.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Resume/resume.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resume/resume.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ResumeDesign.docx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ResumeDesign.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.com/Motify/backend_go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/Motify/backend_go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.com/dgrijalva/jwt-go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/dgrijalva/jwt-go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.com/dustin/go-humanize" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/dustin/go-humanize" afterDir="false" />
@@ -37,22 +26,15 @@
       <change beforePath="$PROJECT_DIR$/src/github.com/tinylib/msgp" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/tinylib/msgp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.com/valyala/bytebufferpool" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/valyala/bytebufferpool" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.com/valyala/fasthttp" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/valyala/fasthttp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/go-echo-vue/handlers/tasks.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/go-echo-vue/handlers/tasks.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/golang.org/x/net" beforeDir="false" afterPath="$PROJECT_DIR$/src/golang.org/x/net" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/golang.org/x/sys" beforeDir="false" afterPath="$PROJECT_DIR$/src/golang.org/x/sys" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/golang.org/x/text" beforeDir="false" afterPath="$PROJECT_DIR$/src/golang.org/x/text" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gopkg.in/mailgun/mailgun-go.v1" beforeDir="false" afterPath="$PROJECT_DIR$/src/gopkg.in/mailgun/mailgun-go.v1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/oldPublic/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/oldPublic/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/.idea/public.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/oldPublic/.idea/public.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/oldPublic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/oldPublic/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/storage.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/storage.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/todo.exe" beforeDir="false" afterPath="$PROJECT_DIR$/src/todo.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/todo.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/todo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/~$sumeDesign.docx" beforeDir="false" afterPath="$PROJECT_DIR$/src/~$sumeDesign.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/main/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/footer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/header.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/navbar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/resume.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/resume.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/resume.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -66,8 +48,23 @@
       <file leaf-file-name="resume.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Resume/resume.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-11">
-              <caret line="184" column="7" selection-start-line="184" selection-start-column="7" selection-end-line="184" selection-end-column="7" />
+            <state relative-caret-position="224">
+              <caret line="80" column="31" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resume.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/public/resume.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="278">
+              <caret line="77" column="14" selection-start-line="77" selection-start-column="14" selection-end-line="77" selection-end-column="14" />
+              <folding>
+                <element signature="e#2734#2740#0#HTML" expanded="true" />
+                <element signature="e#2775#2781#0#HTML" expanded="true" />
+                <element signature="n#style#0;n#hr#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#hr#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,8 +72,8 @@
       <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3672">
-              <caret line="227" column="41" selection-start-line="227" selection-start-column="41" selection-end-line="227" selection-end-column="41" />
+            <state relative-caret-position="333">
+              <caret line="260" column="27" selection-start-line="260" selection-start-column="27" selection-end-line="260" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -84,7 +81,7 @@
       <file leaf-file-name="server.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1071">
+            <state relative-caret-position="547">
               <caret line="69" column="23" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="23" />
               <folding>
                 <element signature="e#206#307#0" expanded="true" />
@@ -96,62 +93,29 @@
       <file leaf-file-name="todo.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/todo.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="35" />
+            <state relative-caret-position="190">
+              <caret line="48" column="108" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="108" />
+              <folding>
+                <element signature="e#14#125#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="resume.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/public/resume.html">
+      <file leaf-file-name="tasks.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/go-echo-vue/handlers/tasks.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-170">
+              <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tasks.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/go-echo-vue/models/tasks.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="resume.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/public/resume.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="2" lean-forward="true" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/public/header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="resume.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/public/resume.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4522">
-              <caret line="266" column="1" selection-start-line="266" selection-start-column="1" selection-end-line="266" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footer.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/public/footer.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="navbar.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/public/navbar.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -173,6 +137,8 @@
       <find>sql</find>
       <find>claims</find>
       <find>person_info</find>
+      <find>info</find>
+      <find>unmarshal</find>
     </findStrings>
     <replaceStrings>
       <replace>resume</replace>
@@ -194,13 +160,13 @@
         <option value="$PROJECT_DIR$/src/main/main.go" />
         <option value="$PROJECT_DIR$/src/go-echo-vue/handlers/tasks.go" />
         <option value="$PROJECT_DIR$/src/todo.go" />
-        <option value="$PROJECT_DIR$/src/Resume/resume.go" />
         <option value="$PROJECT_DIR$/src/public/resume.css" />
         <option value="$PROJECT_DIR$/src/public/navbar.html" />
         <option value="$PROJECT_DIR$/src/public/header.html" />
         <option value="$PROJECT_DIR$/src/public/footer.html" />
-        <option value="$PROJECT_DIR$/src/public/resume.html" />
         <option value="$PROJECT_DIR$/src/public/resume.js" />
+        <option value="$PROJECT_DIR$/src/Resume/resume.go" />
+        <option value="$PROJECT_DIR$/src/public/resume.html" />
       </list>
     </option>
   </component>
@@ -323,6 +289,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3290938" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3290938" />
@@ -336,7 +303,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32913387" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,6 +312,88 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Resume/resume.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2958">
+          <caret line="184" column="7" selection-start-line="184" selection-start-column="7" selection-end-line="184" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3859">
+          <caret line="227" column="41" selection-start-line="227" selection-start-column="41" selection-end-line="227" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="69" column="23" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="23" />
+          <folding>
+            <element signature="e#206#307#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/todo.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="35" />
+          <folding>
+            <element signature="e#14#125#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/resume.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/resume.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4522">
+          <caret line="266" column="1" selection-start-line="266" selection-start-column="1" selection-end-line="266" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/resume.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding>
+            <element signature="e#2734#2740#0#HTML" expanded="true" />
+            <element signature="e#2775#2781#0#HTML" expanded="true" />
+            <element signature="n#style#0;n#hr#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#hr#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Resume/resume.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2975">
@@ -488,48 +536,10 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/user.go" />
-    <entry file="file://$PROJECT_DIR$/src/go-echo-vue/handlers/tasks.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/go-echo-vue/models/tasks.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/oldPublic/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3672">
-          <caret line="227" column="41" selection-start-line="227" selection-start-column="41" selection-end-line="227" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="69" column="23" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="23" />
-          <folding>
-            <element signature="e#206#307#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/todo.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -540,45 +550,99 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/navbar.html">
+    <entry file="file://$PROJECT_DIR$/src/github.com/thedevsaddam/renderer/renderer.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Resume/resume.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="184" column="7" selection-start-line="184" selection-start-column="7" selection-end-line="184" selection-end-column="7" />
+        <state relative-caret-position="201">
+          <caret line="380" column="17" selection-start-line="380" selection-start-column="17" selection-end-line="380" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/public/header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        <state relative-caret-position="530">
+          <caret line="32" column="7" selection-start-line="1" selection-end-line="32" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="6" selection-start-line="2" selection-end-line="25" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="8" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/go-echo-vue/models/tasks.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/go-echo-vue/handlers/tasks.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-170">
+          <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="69" column="23" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="23" />
+          <folding>
+            <element signature="e#206#307#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/todo.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="48" column="108" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="108" />
+          <folding>
+            <element signature="e#14#125#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/public/resume.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="2" lean-forward="true" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+        <state relative-caret-position="204">
+          <caret line="12" column="2" lean-forward="true" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="260" column="27" selection-start-line="260" selection-start-column="27" selection-end-line="260" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Resume/resume.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="80" column="31" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/public/resume.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        <state relative-caret-position="278">
+          <caret line="77" column="14" selection-start-line="77" selection-start-column="14" selection-end-line="77" selection-end-column="14" />
+          <folding>
+            <element signature="e#2734#2740#0#HTML" expanded="true" />
+            <element signature="e#2775#2781#0#HTML" expanded="true" />
+            <element signature="n#style#0;n#hr#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#hr#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
