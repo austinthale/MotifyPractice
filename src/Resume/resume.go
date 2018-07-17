@@ -183,6 +183,7 @@ func main() {
 	e.Use(middleware.Recover())
 
 	e.File("/", "src/public/resume.html") //using to serve a static file that will contain our VueJS client code.
+	e.Static("/static", "src/public")
 
 	//Encoding JSON to write it to the server
 	http.HandleFunc("/resumejson", func(w http.ResponseWriter, req *http.Request) {

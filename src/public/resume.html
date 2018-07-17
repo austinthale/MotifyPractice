@@ -13,7 +13,7 @@
 
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="resume.css">
+    <link rel="stylesheet" type="text/css" href="static/resume.css">
 
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -74,12 +74,53 @@
             <hr style="height:4px" color="grey">
 
             <h4>Education</h4>
-            <div></div>
-            <div></div>
+
+            <div v-for="value in info.educations">
+                <table style="width:100%">
+                    <td align="left">{{ value.school }} </td>
+                    <td align="right">{{ value.date_attended }} </td>
+                </table>
+
+                <ul>
+                    <li v-for="item in value.notes" align="left">
+                        {{ item }}
+                    </li>
+                </ul>
+                <br>
+            </div>
+
             <h4>Employment</h4>
-            <div></div>
-            <div></div>
+
+            <div v-for="value in info.employments">
+                <table style="width:100%">
+                    <td align="left">{{ value.company }} </td>
+                    <td align="right">{{ value.date_attended }} </td>
+                </table>
+
+                <ul>
+                    <li v-for="item in value.notes" align="left">
+                    {{ item }}
+                    </li>
+                </ul>
+                <br>
+            </div>
+
             <h4>Volunteer</h4>
+
+            <div v-for="value in info.volunteers">
+                <table style="width:100%">
+                    <td align="left">{{ value.company }} </td>
+                    <td align="right">{{ value.date_attended }} </td>
+                </table>
+
+                <ul>
+                    <li v-for="item in value.notes" align="left">
+                    {{ item }}
+                    </li>
+                </ul>
+                <br>
+            </div>
+
 
             <hr style="height:4px" color="grey">
 
