@@ -13,10 +13,14 @@
 
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="static/resume.css">
+    <!--<link rel="stylesheet" type="text/css" href="static/resume.css">-->
 
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="https://getbootstrap.com/docs/3.3/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -35,7 +39,7 @@
 
 
 <body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <!-- Custom CSS -->
@@ -71,56 +75,77 @@
 
             <p>{{ info.person_info.address }}&emsp;|&emsp;{{ info.person_info.phone }}&emsp;|&emsp;{{ info.person_info.email }}</p>
 
+
             <hr style="height:4px" color="grey">
+            <h3 align="left">Education</h3>
 
-            <h4>Education</h4>
-
-            <div v-for="value in info.educations">
+            <div v-for="(education, i) in info.educations">
                 <table style="width:100%">
-                    <td align="left">{{ value.school }} </td>
-                    <td align="right">{{ value.date_attended }} </td>
+                    <td align="left">{{ education.school }} </td>
+                    <td align="right">{{ education.date_attended }} </td>
                 </table>
 
+                <div v-for="(find, j) in info.educations[i].notes" align="left" style="margin: 0px 0px 0px 50px;">
+                    <input v-model="info.educations[i].notes[j]" style="width: 90%">
+                    <button class="btn" @click="deleteEducation(i, j)"><i class="fa fa-trash"></i>
+                    </button>
+                </div>
+
+                <button @click="addEducation(i)">
+                    Add Details <i class="far fa-plus-square"></i>
+                </button>
+
+                <!--<pre>{{ $data.info.educations[i].notes }}</pre>-->
+            </div>
+            <hr style="height:4px" color="grey">
+
+
+<!--
                 <ul>
                     <li v-for="item in value.notes" align="left">
                         {{ item }}
                     </li>
                 </ul>
                 <br>
-            </div>
-
-            <h4>Employment</h4>
-
-            <div v-for="value in info.employments">
+-->
+            <h3 align="left">Employment</h3>
+            <div v-for="(value, i) in info.employments">
                 <table style="width:100%">
                     <td align="left">{{ value.company }} </td>
                     <td align="right">{{ value.date_attended }} </td>
                 </table>
 
-                <ul>
-                    <li v-for="item in value.notes" align="left">
-                    {{ item }}
-                    </li>
-                </ul>
-                <br>
+                <div v-for="(find, j) in info.employments[i].notes" align="left" style="margin: 0px 0px 0px 50px;">
+                    <input v-model="info.employments[i].notes[j]" style="width: 90%">
+                    <button class="btn" @click="deleteJob(i, j)"><i class="fa fa-trash"></i>
+                    </button>
+                </div>
+
+                <button @click="addJob(i)">
+                    Add Details <i class="far fa-plus-square"></i>
+                </button>
             </div>
 
-            <h4>Volunteer</h4>
+            <hr style="height:4px" color="grey">
+            <h3 align="left">Volunteer</h3>
 
-            <div v-for="value in info.volunteers">
+            <div v-for="(value, i) in info.volunteers">
                 <table style="width:100%">
                     <td align="left">{{ value.company }} </td>
                     <td align="right">{{ value.date_attended }} </td>
                 </table>
 
-                <ul>
-                    <li v-for="item in value.notes" align="left">
-                    {{ item }}
-                    </li>
-                </ul>
-                <br>
-            </div>
+                <div v-for="(find, j) in info.volunteers[i].notes" align="left" style="margin: 0px 0px 0px 50px;">
+                    <input v-model="info.volunteers[i].notes[j]" style="width: 90%">
+                    <button class="btn" @click="deleteVol(i, j)"><i class="fa fa-trash"></i>
+                    </button>
+                </div>
 
+                <button @click="addVol(i)">
+                    Add Details <i class="far fa-plus-square"></i>
+                </button>
+            </div>
+        </div>
 
             <hr style="height:4px" color="grey">
 
@@ -154,12 +179,44 @@
     var res = new Vue({
         el: '#app',
         data:{
-            info: []
+            info: [],
+            educations: [],
+            employments: [],
+        },
+        methods: {
+            addEducation: function (idx) {
+                console.log(this.info.educations);
+                this.info.educations[idx].notes.push('');
+            },
+            deleteEducation: function (i, j) {
+                console.log(j);
+                console.log(this.info.educations);
+                this.info.educations[i].notes.splice(j, 1);
+            },
+            addJob: function (idx) {
+                console.log(this.info.employments);
+                this.info.employments[idx].notes.push('');
+            },
+            deleteJob: function (i, j) {
+                console.log(j);
+                console.log(this.info.employments);
+                this.info.employments[i].notes.splice(j, 1);
+            },
+            addVol: function (idx) {
+                console.log(this.info.volunteers);
+                this.info.volunteers[idx].notes.push('');
+            },
+            deleteVol: function (i, j) {
+                console.log(j);
+                console.log(this.info.volunteers);
+                this.info.volunteers[i].notes.splice(j, 1);
+            },
         },
         mounted () {
             axios
                 .get('/resumejson')
                 .then(response => (this.info = response.data))
         }
-    })
+    });
+
 </script>
