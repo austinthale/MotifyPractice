@@ -193,6 +193,8 @@ func main() {
 	// Route => handler
 	e.GET("/resumejson", displayInfo)
 
+
+
 	// Start server
 	e.Logger.Fatal(e.Start(":1323"))
 }

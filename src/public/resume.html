@@ -13,7 +13,7 @@
 
 
     <!-- Custom CSS -->
-    <!--<link rel="stylesheet" type="text/css" href="static/resume.css">-->
+    <link rel="stylesheet" type="text/css" href="static/resume.css">
 
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -59,7 +59,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#edu">Education</a></li>
+                <li><a href="#edu">Education</a></li>
                 <li><a href="#xp">Employment</a></li>
                 <li><a href="#volunteer">Volunteer</a></li>
             </ul>
@@ -71,12 +71,16 @@
 
     <div class="starter-template">
         <div id="app">
+            <div align="right">
+                <button v-on:click="editButton" style="width: 75px">Edit</button> <button v-on:click="saveButton" style="width: 75px">Save</button>
+            </div>
             <h1>{{ info.person_info.name }}</h1>
 
-            <p>{{ info.person_info.address }}&emsp;|&emsp;{{ info.person_info.phone }}&emsp;|&emsp;{{ info.person_info.email }}</p>
+            <p>{{ info.person_info.address }}&emsp;&emsp;|&emsp;&emsp;{{ info.person_info.phone }}&emsp;&emsp;|&emsp;&emsp;{{ info.person_info.email }}</p>
 
-
+        <section id="edu">
             <hr style="height:4px" color="grey">
+
             <h3 align="left">Education</h3>
 
             <div v-for="(education, i) in info.educations">
@@ -84,19 +88,29 @@
                     <td align="left">{{ education.school }} </td>
                     <td align="right">{{ education.date_attended }} </td>
                 </table>
+                <div v-if="isEditing" class="editSection" >
+                    <div v-for="(find, j) in info.educations[i].notes" align="left" style="margin: 0px 0px 0px 50px;">
+                        <input v-model="info.educations[i].notes[j]" style="width: 90%">
+                        <button class="btn" @click="deleteEducation(i, j)"><i class="fa fa-trash"></i>
+                        </button>
+                    </div>
 
-                <div v-for="(find, j) in info.educations[i].notes" align="left" style="margin: 0px 0px 0px 50px;">
-                    <input v-model="info.educations[i].notes[j]" style="width: 90%">
-                    <button class="btn" @click="deleteEducation(i, j)"><i class="fa fa-trash"></i>
+                    <button @click="addEducation(i)">
+                        Add Details <i class="far fa-plus-square"></i>
                     </button>
                 </div>
-
-                <button @click="addEducation(i)">
-                    Add Details <i class="far fa-plus-square"></i>
-                </button>
-
+                <div v-else>
+                        <ul>
+                             <li v-for="item in education.notes" align="left">
+                                 {{ item }}
+                             </li>
+                         </ul>
+                     <br>
+                </div>
                 <!--<pre>{{ $data.info.educations[i].notes }}</pre>-->
             </div>
+        </section>
+        <section id="xp">
             <hr style="height:4px" color="grey">
 
 
@@ -114,18 +128,28 @@
                     <td align="left">{{ value.company }} </td>
                     <td align="right">{{ value.date_attended }} </td>
                 </table>
+                <div v-if="isEditing" class="editSection">
+                    <div v-for="(find, j) in info.employments[i].notes" align="left" style="margin: 0px 0px 0px 50px;">
+                        <input v-model="info.employments[i].notes[j]" style="width: 90%">
+                        <button class="btn" @click="deleteJob(i, j)"><i class="fa fa-trash"></i>
+                        </button>
+                    </div>
 
-                <div v-for="(find, j) in info.employments[i].notes" align="left" style="margin: 0px 0px 0px 50px;">
-                    <input v-model="info.employments[i].notes[j]" style="width: 90%">
-                    <button class="btn" @click="deleteJob(i, j)"><i class="fa fa-trash"></i>
+                    <button @click="addJob(i)">
+                        Add Details <i class="far fa-plus-square"></i>
                     </button>
                 </div>
-
-                <button @click="addJob(i)">
-                    Add Details <i class="far fa-plus-square"></i>
-                </button>
+                <div v-else>
+                    <ul>
+                         <li v-for="item in value.notes" align="left">
+                         {{ item }}
+                         </li>
+                     </ul>
+                     <br>
+                </div>
             </div>
-
+         </section>
+         <section id="volunteer">
             <hr style="height:4px" color="grey">
             <h3 align="left">Volunteer</h3>
 
@@ -134,19 +158,28 @@
                     <td align="left">{{ value.company }} </td>
                     <td align="right">{{ value.date_attended }} </td>
                 </table>
+                <div v-if="isEditing" class="editSection">
+                    <div v-for="(find, j) in info.volunteers[i].notes" align="left" style="margin: 0px 0px 0px 50px;">
+                        <input v-model="info.volunteers[i].notes[j]" style="width: 90%">
+                        <button class="btn" @click="deleteVol(i, j)"><i class="fa fa-trash"></i>
+                        </button>
+                    </div>
 
-                <div v-for="(find, j) in info.volunteers[i].notes" align="left" style="margin: 0px 0px 0px 50px;">
-                    <input v-model="info.volunteers[i].notes[j]" style="width: 90%">
-                    <button class="btn" @click="deleteVol(i, j)"><i class="fa fa-trash"></i>
+                    <button @click="addVol(i)">
+                        Add Details <i class="far fa-plus-square"></i>
                     </button>
                 </div>
-
-                <button @click="addVol(i)">
-                    Add Details <i class="far fa-plus-square"></i>
-                </button>
+                <div v-else>
+                    <ul>
+                        <li v-for="item in value.notes" align="left">
+                        {{ item }}
+                        </li>
+                    </ul>
+                    <br>
+                </div>
             </div>
+        </section>
         </div>
-
             <hr style="height:4px" color="grey">
 
 
@@ -182,6 +215,7 @@
             info: [],
             educations: [],
             employments: [],
+            isEditing: false
         },
         methods: {
             addEducation: function (idx) {
@@ -210,6 +244,12 @@
                 console.log(j);
                 console.log(this.info.volunteers);
                 this.info.volunteers[i].notes.splice(j, 1);
+            },
+            editButton: function() {
+                this.isEditing = true;
+            },
+            saveButton: function() {
+                this.isEditing = false;
             },
         },
         mounted () {
