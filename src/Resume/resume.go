@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"database/sql"
 	"github.com/labstack/echo/middleware"
-	"encoding/json"
 )
 
 /*
@@ -174,6 +173,10 @@ func migrate(db *sql.DB) {
 	}
 }
 
+func saveInfo(c echo.Context) error {
+	return c.JSON(http.StatusOK, r)
+}
+
 func main() {
 	// Echo instance
 	e := echo.New()
@@ -182,17 +185,14 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	e.File("/", "src/public/resume.html") //using to serve a static file that will contain our VueJS client code.
-	e.Static("/static", "src/public")
-
-	//Encoding JSON to write it to the server
-	http.HandleFunc("/resumejson", func(w http.ResponseWriter, req *http.Request) {
-		json.NewEncoder(w).Encode(r)
-	})
+	e.File("/", "src/public/resume.html") // using to serve a static file that will contain our VueJS client code.
+	e.Static("/static", "src/public")	// using to serve all files contained in public folder, and must be accessed
+										// through the /static folder ("localhost:1323/static/resume.css")
 
 	// Route => handler
 	e.GET("/resumejson", displayInfo)
 
+	e.POST("/resumejson", saveInfo)
 
 
 	// Start server

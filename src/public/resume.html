@@ -11,7 +11,6 @@
     <title>Resume for Austin T Hale</title>
 
 
-
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="static/resume.css">
 
@@ -42,9 +41,6 @@
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<!-- Custom CSS -->
-<link rel="stylesheet" type="text/css" href="resume.css">
-
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -74,32 +70,49 @@
             <div align="right">
                 <button v-on:click="editButton" style="width: 75px">Edit</button> <button v-on:click="saveButton" style="width: 75px">Save</button>
             </div>
-            <h1>{{ info.person_info.name }}</h1>
 
-            <p>{{ info.person_info.address }}&emsp;&emsp;|&emsp;&emsp;{{ info.person_info.phone }}&emsp;&emsp;|&emsp;&emsp;{{ info.person_info.email }}</p>
-
+            <div v-if="isEditing" class="editSection" >
+                <h1><input v-model="info.person_info.name" style="width: 60%; text-align: center" placeholder="Full name..."></h1>
+                <input v-model="info.person_info.address" style="width: 30%; text-align: center" placeholder="Address...">
+                <input v-model="info.person_info.phone" style="width: 30%; text-align: center" placeholder="Phone (xxx)xxx-xxxx">
+                <input v-model="info.person_info.email" style="width: 30%; text-align: center" placeholder="Email: john@gmail.com">
+            </div>
+            <div v-else>
+                <h1>{{ info.person_info.name }}</h1>
+                <p>{{ info.person_info.address }}&emsp;&emsp;|&emsp;&emsp;{{ info.person_info.phone }}&emsp;&emsp;|&emsp;&emsp;{{ info.person_info.email }}</p>
+            </div>
         <section id="edu">
             <hr style="height:4px" color="grey">
 
-            <h3 align="left">Education</h3>
+            <div>
+                <h3 align="left">Education</h3>
+                <div v-if="isEditing">
+                    <button v-on:click="addEducation" style="width: 200px; display: block; margin-bottom: 10px">Add Education</button>
+                </div>
+            </div>
 
             <div v-for="(education, i) in info.educations">
-                <table style="width:100%">
-                    <td align="left">{{ education.school }} </td>
-                    <td align="right">{{ education.date_attended }} </td>
-                </table>
                 <div v-if="isEditing" class="editSection" >
-                    <div v-for="(find, j) in info.educations[i].notes" align="left" style="margin: 0px 0px 0px 50px;">
+                    <table style="width:100%">
+                        <td align="left" style="width: 45px;"><button class="btn" @click="deleteEdu(i)"><i class="fas fa-trash-alt"></i></button></td>
+                        <td align="left"><input v-model="info.educations[i].school" style="width: 60%" placeholder="School name..."> </td>
+                        <td align="right"><input v-model="info.educations[i].date_attended" style="width: 50%" placeholder="Dates attended..."> </td>
+                    </table>
+                    <div v-for="(find, j) in info.educations[i].notes" align="left" style="margin: 0px 0px 0px 100px;">
                         <input v-model="info.educations[i].notes[j]" style="width: 90%">
-                        <button class="btn" @click="deleteEducation(i, j)"><i class="fa fa-trash"></i>
+                        <button class="btn" @click="deleteEduNote(i, j)"><i class="far fa-minus-square"></i>
                         </button>
                     </div>
 
-                    <button @click="addEducation(i)">
+                    <button @click="addEduNote(i)">
                         Add Details <i class="far fa-plus-square"></i>
                     </button>
                 </div>
                 <div v-else>
+                    <table style="width:100%">
+                        <td align="left">{{ education.school }} </td>
+                        <td align="right">{{ education.date_attended }} </td>
+                    </table>
                         <ul>
                              <li v-for="item in education.notes" align="left">
                                  {{ item }}
@@ -113,33 +126,36 @@
         <section id="xp">
             <hr style="height:4px" color="grey">
 
-
-<!--
-                <ul>
-                    <li v-for="item in value.notes" align="left">
-                        {{ item }}
-                    </li>
-                </ul>
-                <br>
--->
-            <h3 align="left">Employment</h3>
+            <div>
+                <h3 align="left">Employment</h3>
+                <div v-if="isEditing">
+                    <button v-on:click="addJob" style="width: 200px; display: block; margin-bottom: 10px">Add Employment</button>
+                </div>
+            </div>
             <div v-for="(value, i) in info.employments">
-                <table style="width:100%">
-                    <td align="left">{{ value.company }} </td>
-                    <td align="right">{{ value.date_attended }} </td>
-                </table>
-                <div v-if="isEditing" class="editSection">
-                    <div v-for="(find, j) in info.employments[i].notes" align="left" style="margin: 0px 0px 0px 50px;">
-                        <input v-model="info.employments[i].notes[j]" style="width: 90%">
-                        <button class="btn" @click="deleteJob(i, j)"><i class="fa fa-trash"></i>
-                        </button>
-                    </div>
+                <div v-if="isEditing" class="editSection" >
+                    <table style="width:100%">
+                        <td align="left" style="width: 45px;"><button class="btn" @click="deleteJob(i)"><i class="fas fa-trash-alt"></i></button></td>
+                        <td align="left"><input v-model="info.employments[i].company" style="width: 60%" placeholder="Company name..."> </td>
+                        <td align="right"><input v-model="info.employments[i].date_attended" style="width: 50%" placeholder="Dates attended..."> </td>
+                    </table>
 
-                    <button @click="addJob(i)">
-                        Add Details <i class="far fa-plus-square"></i>
-                    </button>
+                        <div v-for="(find, j) in info.employments[i].notes" align="left" style="margin: 0px 0px 0px 100px;">
+                            <input v-model="info.employments[i].notes[j]" style="width: 90%">
+                            <button class="btn" @click="deleteJobNote(i, j)"><i class="far fa-minus-square"></i>
+                            </button>
+                        </div>
+
+                        <button @click="addJobNote(i)">
+                            Add Details <i class="far fa-plus-square"></i>
+                        </button>
+
                 </div>
                 <div v-else>
+                    <table style="width:100%">
+                        <td align="left">{{ value.company }} </td>
+                        <td align="right">{{ value.date_attended }} </td>
+                    </table>
                     <ul>
                          <li v-for="item in value.notes" align="left">
                          {{ item }}
@@ -151,25 +167,35 @@
          </section>
          <section id="volunteer">
             <hr style="height:4px" color="grey">
-            <h3 align="left">Volunteer</h3>
-
+             <div>
+                <h3 align="left">Volunteer</h3>
+                 <div v-if="isEditing">
+                     <button v-on:click="addVol" style="width: 200px; display: block; margin-bottom: 10px">Add Volunteer Exp</button>
+                 </div>
+             </div>
             <div v-for="(value, i) in info.volunteers">
-                <table style="width:100%">
-                    <td align="left">{{ value.company }} </td>
-                    <td align="right">{{ value.date_attended }} </td>
-                </table>
-                <div v-if="isEditing" class="editSection">
-                    <div v-for="(find, j) in info.volunteers[i].notes" align="left" style="margin: 0px 0px 0px 50px;">
+                <div v-if="isEditing" class="editSection" >
+                    <table style="width:100%">
+                        <td align="left" style="width: 45px;"><button class="btn" @click="deleteVol(i)"><i class="fas fa-trash-alt"></i></button></td>
+                        <td align="left"><input v-model="info.volunteers[i].company" style="width: 60%" placeholder="Company name..."> </td>
+                        <td align="right"><input v-model="info.volunteers[i].date_attended" style="width: 50%" placeholder="Dates attended..."></td>
+                    </table>
+
+                    <div v-for="(find, j) in info.volunteers[i].notes" align="left" style="margin: 0px 0px 0px 100px;">
                         <input v-model="info.volunteers[i].notes[j]" style="width: 90%">
-                        <button class="btn" @click="deleteVol(i, j)"><i class="fa fa-trash"></i>
+                        <button class="btn" @click="deleteVolNote(i, j)"><i class="far fa-minus-square"></i>
                         </button>
                     </div>
 
-                    <button @click="addVol(i)">
+                    <button @click="addVolNote(i)">
                         Add Details <i class="far fa-plus-square"></i>
                     </button>
                 </div>
                 <div v-else>
+                    <table style="width:100%">
+                        <td align="left">{{ value.company }} </td>
+                        <td align="right">{{ value.date_attended }} </td>
+                    </table>
                     <ul>
                         <li v-for="item in value.notes" align="left">
                         {{ item }}
@@ -209,47 +235,88 @@
 </html>
 
 <script>
-    var res = new Vue({
+    new Vue({
         el: '#app',
         data:{
-            info: [],
+            info: {
+                person_info: {}
+            },
             educations: [],
             employments: [],
+            volunteers:[],
             isEditing: false
         },
         methods: {
-            addEducation: function (idx) {
-                console.log(this.info.educations);
-                this.info.educations[idx].notes.push('');
-            },
-            deleteEducation: function (i, j) {
-                console.log(j);
-                console.log(this.info.educations);
-                this.info.educations[i].notes.splice(j, 1);
-            },
-            addJob: function (idx) {
-                console.log(this.info.employments);
-                this.info.employments[idx].notes.push('');
-            },
-            deleteJob: function (i, j) {
-                console.log(j);
-                console.log(this.info.employments);
-                this.info.employments[i].notes.splice(j, 1);
-            },
-            addVol: function (idx) {
-                console.log(this.info.volunteers);
-                this.info.volunteers[idx].notes.push('');
-            },
-            deleteVol: function (i, j) {
-                console.log(j);
-                console.log(this.info.volunteers);
-                this.info.volunteers[i].notes.splice(j, 1);
-            },
             editButton: function() {
                 this.isEditing = true;
             },
             saveButton: function() {
+                axios
+                    .post('/resumejson', this.info.data,) //the data to post
+                    .then(r => console.log('r: ', JSON.stringify(r, null, 2)));
                 this.isEditing = false;
+            },
+            addEduNote: function (idx) {
+                console.log(this.info.educations);
+                this.info.educations[idx].notes.push('');
+            },
+            deleteEduNote: function (i, j) {
+                console.log(j);
+                console.log(this.info.educations);
+                this.info.educations[i].notes.splice(j, 1);
+            },
+            addJobNote: function (idx) {
+                console.log(this.info.employments);
+                this.info.employments[idx].notes.push('');
+            },
+            deleteJobNote: function (i, j) {
+                console.log(j);
+                console.log(this.info.employments);
+                this.info.employments[i].notes.splice(j, 1);
+            },
+            addVolNote: function (idx) {
+                console.log(this.info.volunteers);
+                this.info.volunteers[idx].notes.push('');
+            },
+            deleteVolNote: function (i, j) {
+                console.log(j);
+                console.log(this.info.volunteers);
+                this.info.volunteers[i].notes.splice(j, 1);
+            },
+            addEducation: function()  {
+                var newEdu = {
+                    school: "",
+                    date_attended: "",
+                    notes: []
+                };
+                this.info.educations.push(newEdu);
+            },
+            addJob: function()  {
+                var newJob = {
+                    company: "",
+                    position: "",
+                    date_attended: "",
+                    notes: []
+                };
+                this.info.employments.push(newJob);
+            },
+            addVol: function()  {
+                var newVol = {
+                    company: "",
+                    position: "",
+                    date_attended: "",
+                    notes: []
+                };
+                this.info.volunteers.push(newVol);
+            },
+            deleteEdu: function (i) {
+                this.info.educations.splice(i,1);
+            },
+            deleteJob: function (i) {
+                this.info.employments.splice(i,1);
+            },
+            deleteVol: function (i) {
+                this.info.volunteers.splice(i,1);
             },
         },
         mounted () {
