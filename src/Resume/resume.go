@@ -173,8 +173,12 @@ func migrate(db *sql.DB) {
 	}
 }
 
-func saveInfo(c echo.Context) error {
-	return c.JSON(http.StatusOK, r)
+func saveInfo(c echo.Context) (err error) {
+	res := new(Resume)
+	if err = c.Bind(res); err != nil {
+		return
+	}
+	return c.JSON(http.StatusOK, res) //changed r to res
 }
 
 func main() {

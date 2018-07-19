@@ -1,0 +1,55 @@
+# Compiled source, Binaries for programs/plugins #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Images #
+*.jpg
+*.gif
+*.png
+*.svg
+*.ico
+
+# Video #
+*.wmv
+*.mpg
+*.mpeg
+*.mp4
+*.mov
+*.flv
+*.avi
+*.ogv
+*.ogg
+*.webm
+
+# Audio #
+*.wav
+*.mp3
+*.wma
+
+# Folders #
+**/.idea/
+**/pkg/
+**/bin/
+**/cloud.google.com/
+**/github.com/
+**/golang.org/
+**/google.golang.org/
+**/gopkg.in/
