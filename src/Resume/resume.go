@@ -2,46 +2,14 @@ package main
 
 import (
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/labstack/echo"
-	"net/http"
 	"database/sql"
+	"fmt"
+	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
-
 /*
-var rnd *renderer.Render
-*/
-
-/*
-// TemplateRenderer is a custom html/template renderer for Echo framework
-type TemplateRenderer struct {
-	templates *template.Template
-}
-*/
-/*
-func init() {
-	opts := renderer.Options{
-		ParseGlobPattern: "./src/public/*.html",
-	}
-
-	rnd = renderer.New(opts)
-}
-*/
-/*
-// Render renders a template document
-func (t *TemplateRenderer) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
-
-	// Add global methods if data is a map
-	if viewContext, isMap := data.(map[string]interface{}); isMap {
-		viewContext["reverse"] = c.Echo().Reverse
-	}
-
-	return t.templates.ExecuteTemplate(w, name, data)
-}
-*/
-
 type PersonInfo struct {
-	Name    string `json:"name"`
+	Name    string `db:"name" json:"name"`
 	Address string `json:"address"`
 	Phone   string `json:"phone"`
 	Email   string `json:"email"`
@@ -134,20 +102,49 @@ var r = Resume{
 			},
 		},
 	},
+}*/
+
+type resume struct {
+	id 		int
+	full_name 	string
+	address string
+	phone	string
+	email	string
+}
+type education struct {
+	id			 int
+	school       string
+	DateAttended string
+	Notes        []string
 }
 
-func displayInfo(c echo.Context) error {
-	return c.JSON(http.StatusOK, r)
+type employment struct {
+	id			 int
+	Company      string
+	DateAttended string
+	Position     string
+	Notes        []string
+}
+
+type volunteer struct {
+	id 			 int
+	Company      string
+	DateAttended string
+	Position     string
+	Notes        []string
+}
+
+type Note struct {
+	id 			 int
+	section_id 	 int
+	detail 		 string
+	note_type   		 int
 }
 
 //Initializes DB, returns a pointer to sql DB
 func initDB(filepath string) *sql.DB {
-	db, err := sql.Open("sqlite3", filepath)
-
-	// Here we check for any db errors then exit
-	if err != nil {
-		panic(err)
-	}
+	db, err := sql.Open("sqlite3", filepath) // Open connection to DB
+	checkErr(err)		// Here we check for any db errors then exit
 
 	// If we don't get any errors but somehow still don't get a db connection
 	// we exit as well
@@ -159,18 +156,99 @@ func initDB(filepath string) *sql.DB {
 
 //Migrate the schema
 func migrate(db *sql.DB) {
+	// SQL statement to create a task table, with no records in it.
 	sql := `
-    CREATE TABLE IF NOT EXISTS Employment(
+    CREATE TABLE IF NOT EXISTS resume(
         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-        name VARCHAR NOT NULL
+        full_name VARCHAR,
+		address VARCHAR,
+		phone VARCHAR,
+		email VARCHAR
     );
+	DELETE FROM resume;
+	CREATE TABLE IF NOT EXISTS education(
+		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+		school TEXT,
+	  	date_attended TEXT,
+		resume_id INTEGER,
+		FOREIGN KEY(resume_id) REFERENCES resume(id)
+	);
+	DELETE FROM education;
+	CREATE TABLE IF NOT EXISTS employment(
+		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+		company TEXT,
+		position TEXT,
+	  	date_attended TEXT,
+		resume_id INTEGER,
+		FOREIGN KEY(resume_id) REFERENCES resume(id)
+	);
+	DELETE FROM employment;
+	CREATE TABLE IF NOT EXISTS volunteer(
+		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+		company TEXT,
+		position TEXT,
+	  	date_attended TEXT,
+		resume_id INTEGER,
+		FOREIGN KEY(resume_id) REFERENCES resume(id)
+	);
+	DELETE FROM volunteer;
+	CREATE TABLE IF NOT EXISTS note(
+		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+		section_id INTEGER,
+		detail TEXT,
+		type TEXT
+	);
+	DELETE FROM note;
     `
-
+	// Execute the SQL statement
 	_, err := db.Exec(sql)
 	// Exit if something goes wrong with our SQL statement above
-	if err != nil {
-		panic(err)
+	checkErr(err)
+}
+
+func insertRecords(db *sql.DB) {
+	// Begin transaction
+	tx, err := db.Begin()
+	checkErr(err)
+	stmt, err := tx.Prepare("INSERT INTO resume(id, full_name, address, phone, email) VALUES(?, ?, ?, ?, ?)")
+	checkErr(err)
+	//defer stmt.Close()
+
+	// Create empty slice of resume struct pointers.
+	resumes := []*resume{}
+	resumes = append(resumes, &resume{id: 1, full_name: "Austin T. Hale", address: "123 Main st.", phone: "555-555-5555", email: "test@gmail.com"})
+
+	_, err = stmt.Exec(resumes[0].id, resumes[0].full_name, resumes[0].address, resumes[0].phone, resumes[0].email)
+	checkErr(err)
+
+	tx.Commit()
+	_, err = db.Exec("INSERT INTO education(id, school, date_attended, resume_id) values(1, 'UVU', 'Aug 2015 - Present',  1),(2, 'BYU-Idaho', 'Apr 2011 – Dec 2012', 1)")
+	_, err = db.Exec("INSERT INTO employment(id, company, position, date_attended, resume_id) values(1, 'UVU CS Tutor Lab', 'Tutor', 'Jan 2018 - Present',  1),(2, 'Frontier Communications', 'Customer Service Rep','Feb 2016 – Aug 2016', 1)")
+	_, err = db.Exec("INSERT INTO volunteer(id, company, position, date_attended, resume_id) values(1, 'Xing Zhou Bilingual School; Guangdong, China', 'English Teacher', 'Mar 2015 - Jul 2015',  1),(2, 'Church of Jesus Christ of Latter-day Saints', 'Missionary','Feb 2009 - Feb 2011', 1)")
+
+}
+
+func readRecords(db *sql.DB) {
+	rows, err := db.Query("SELECT * from resume")
+	checkErr(err)
+	defer rows.Close()
+	for rows.Next() {
+		var id int
+		var name string
+		var address string
+		var phone string
+		var email string
+		err = rows.Scan(&id, &name, &address, &phone, &email)
+		checkErr(err)
+		fmt.Println(id, name, address, phone, email)
 	}
+	err = rows.Err()
+	checkErr(err)
+}
+
+
+/*func displayInfo(c echo.Context) error {
+	return c.JSON(http.StatusOK, r)
 }
 
 func saveInfo(c echo.Context) (err error) {
@@ -178,10 +256,22 @@ func saveInfo(c echo.Context) (err error) {
 	if err = c.Bind(res); err != nil {
 		return
 	}
+	r = *res
 	return c.JSON(http.StatusOK, res) //changed r to res
-}
+}*/
 
 func main() {
+	// Initialize the DB
+	db := initDB("resume.db")
+	// close database connection before exiting program.
+	defer db.Close()
+	migrate(db)		// Schema migration
+
+
+	insertRecords(db)
+	readRecords(db)
+
+
 	// Echo instance
 	e := echo.New()
 
@@ -194,15 +284,21 @@ func main() {
 										// through the /static folder ("localhost:1323/static/resume.css")
 
 	// Route => handler
-	e.GET("/resumejson", displayInfo)
+	//e.GET("/resumejson", displayInfo)
 
-	e.POST("/resumejson", saveInfo)
+	//e.POST("/resumejson", saveInfo)
 
 
 	// Start server
 	e.Logger.Fatal(e.Start(":1323"))
 }
 
-/*func resume(w http.ResponseWriter, r *http.Request) {
-	rnd.HTML(w, http.StatusOK, "resume", nil)
-}*/
+
+func checkErr(err error, args ...string) {
+	if err != nil {
+		fmt.Println("Error")
+		fmt.Println(err, args)
+		//log.Fatal(err)
+		return
+	}
+}

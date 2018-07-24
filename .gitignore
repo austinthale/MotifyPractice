@@ -6,6 +6,8 @@
 *.exe
 *.o
 *.so
+*.db
+*.json
 
 # Packages #
 ############
@@ -53,3 +55,6 @@
 **/golang.org/
 **/google.golang.org/
 **/gopkg.in/
+
+# Docs #
+*.docx
