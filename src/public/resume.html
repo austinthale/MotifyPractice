@@ -68,7 +68,12 @@
     <div class="starter-template">
         <div id="app">
             <div align="right">
-                <button v-on:click="editButton" style="width: 75px">Edit</button> <button v-on:click="saveButton" style="width: 75px">Save</button>
+                <div v-if="isEditing">
+                    <button v-on:click="saveButton" style="width: 75px">Save</button>
+                </div>
+                <div v-else>
+                    <button v-on:click="editButton" style="width: 75px">Edit</button>
+                </div>
             </div>
 
             <div v-if="isEditing" class="editSection" >
@@ -262,6 +267,7 @@
             },
             addEduNote: function (idx) {
                 console.log(this.info.educations);
+                this.info.educations[idx].notes = this.info.educations[idx].notes || [];
                 this.info.educations[idx].notes.push('');
             },
             deleteEduNote: function (i, j) {
@@ -271,6 +277,7 @@
             },
             addJobNote: function (idx) {
                 console.log(this.info.employments);
+                this.info.employments[idx].notes = this.info.employments[idx].notes || [];
                 this.info.employments[idx].notes.push('');
             },
             deleteJobNote: function (i, j) {
@@ -280,6 +287,7 @@
             },
             addVolNote: function (idx) {
                 console.log(this.info.volunteers);
+                this.info.volunteers[idx].notes = this.info.volunteers[idx].notes || [];
                 this.info.volunteers[idx].notes.push('');
             },
             deleteVolNote: function (i, j) {
